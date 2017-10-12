@@ -4,9 +4,9 @@ The goal of this project is to arrange the Tetriminos among themselves to make t
 
 ## Usage:
 
-'''
-./fillit <FILENAME>
-'''
+```
+./fillit <FILE_NAME>
+```
 
 ## Update:
 
