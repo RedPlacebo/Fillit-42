@@ -1,0 +1,10 @@
+Norme: ./board.c
+Error: 9 functions in the file
+Error (line 120): can_put have 5 parameters
+Error (line 136): function place_innext_available has 34 lines
+
+Norme: ./solve.c
+Error (line 15): function solver has 39 lines
+
+Norme: ./tetro.c
+Error: 8 functions in the file
