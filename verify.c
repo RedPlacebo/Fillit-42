@@ -6,13 +6,13 @@
 /*   By: ikarishe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 11:33:24 by ikarishe          #+#    #+#             */
-/*   Updated: 2017/10/12 14:04:51 by ekulyyev         ###   ########.fr       */
+/*   Updated: 2017/10/12 15:59:22 by ikarishe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		count_connections(char *buf, int a)
+static int		count_connections(char *buf, int a)
 {
 	int i;
 
@@ -31,7 +31,7 @@ int		count_connections(char *buf, int a)
 	return (i);
 }
 
-int		is_solid(char *buf)
+static int		is_solid(char *buf)
 {
 	int con[4];
 	int j;
@@ -60,7 +60,7 @@ int		is_solid(char *buf)
 	return (1);
 }
 
-int		is_valid(char *buf)
+static int		is_valid(char *buf)
 {
 	int size;
 	int i;
@@ -98,13 +98,16 @@ int		verify(char *filename)
 	tetr_count = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		write(2, "Could not open file\n", 20);
+	{
+		write(1, "error\n", 6);
+		exit (1);
+	}
 	while (read(fd, buf, 21) > 0)
 	{
 		if ((is_valid(buf) != 0) || (tetr_count > 26))
 		{
-			write(2, "Invalid file\n", 13);
-			return (0);
+			write(1, "error\n", 6);
+			exit (1);
 		}
 		tetr_count++;
 	}
