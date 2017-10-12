@@ -2,7 +2,7 @@
 
 ## Usage:
 
-./fillit "<FILENAME>"
+./fillit FILENAME
 
 
 ## Update:
