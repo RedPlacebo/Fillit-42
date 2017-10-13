@@ -5,17 +5,6 @@ Norme: ./tetro.c
 Error: 8 functions in the file
 
 Verify.c
-Error: 
-Misses Case:
-....$
-....$
-....$
-####$
-
-....$
-....$
-(EOF)
-tofix: verify that 21 charachters were read each time:
 
 Misses case:
 ....$
@@ -30,39 +19,4 @@ $
 $(EOF)
 tofix: ???find a way to make sure last tetromino doesn't have a newline at the end
 
-Misses case:
-empty file
-tofix: after reading to the buffer the first time, make sure byteread != 0
-
-Solve.c
-We're getting bad solutions in some cases.
-tofix: go back to de-bugging mode, print the steps it takes, and figure out why it
- increments size before trying all solutions. Finding why it messes up on this one
-should fix the others as well.
-
-....
-#...
-#...
-##..
-
-...#
-...#
-..##
-....
-
-##..
-.##.
-....
-....
-
-WHAT IS EXPECTED:
-CC.B
-ACCB
-A.BB
-AA..
-OUR OUTPUT:
-A..B.
-A..B.
-AABB.
-CC...
-.CC..
+more norminette stuff
