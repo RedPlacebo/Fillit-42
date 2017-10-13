@@ -6,7 +6,7 @@
 /*   By: ikarishe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 15:17:13 by ikarishe          #+#    #+#             */
-/*   Updated: 2017/10/12 15:50:37 by ikarishe         ###   ########.fr       */
+/*   Updated: 2017/10/13 12:43:06 by ikarishe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	put_piece(t_tetro *piece, int x, int y, char **board)
 	id = piece->id;
 	piece->onboard = 1;
 	piece->previously_placed = 1;
+//	printf("attempting to put piece %c, at position (x, y), (%d, %d)\n", id, x, y);
 	piece->current.x = x;
 	piece->current.y = y;
 	board[y + piece->offset[0].y][x + piece->offset[0].x] = id;

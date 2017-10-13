@@ -6,7 +6,7 @@
 /*   By: ikarishe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 10:58:23 by ikarishe          #+#    #+#             */
-/*   Updated: 2017/10/13 13:12:48 by ikarishe         ###   ########.fr       */
+/*   Updated: 2017/10/13 15:01:03 by ikarishe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,9 @@ int				solver(int total_pieces, t_tetro *pieces, int size)
 	tet_num = 0;
 	allocate_mem(&board, size);
 	board = make_board(board, size);
+	printf("now working on board size - %d\n", size);
 	while (1)
 	{
-//		put_board(board, size);
-//		printf("\n");
 		if (place_innext_available(&pieces[tet_num], board, size))
 		{
 			pieces_left--;
@@ -55,7 +54,6 @@ int				solver(int total_pieces, t_tetro *pieces, int size)
 		{
 			if (tet_num == 0)
 			{
-	//			printf("resetting all pieces\n");
 				reset_tetros(pieces, total_pieces);
 				free_board(board, size);
 				if (solver(total_pieces, pieces, (size + 1)) == 0)

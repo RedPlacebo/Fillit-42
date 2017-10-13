@@ -6,7 +6,7 @@
 /*   By: ikarishe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 14:40:49 by ikarishe          #+#    #+#             */
-/*   Updated: 2017/10/12 14:12:51 by ekulyyev         ###   ########.fr       */
+/*   Updated: 2017/10/13 15:15:43 by ikarishe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int		main(int argc, char **argv)
 	num_pieces = 0;
 	num_pieces = verify(argv[1]);
 	pieces = (t_tetro *)malloc((
-			(sizeof(int)) * 5 * 2 + sizeof(int) * 2 + sizeof(char)) *
-			(num_pieces + 100));
+			(sizeof(int)) * 5 * 2 + sizeof(int) * 2 + sizeof(char) + 
+			sizeof(location*)*4)) * (num_pieces);
 	pieces = make_tetros(argv[1], num_pieces, pieces);
 	if (argc != 2)
 	{

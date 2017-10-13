@@ -6,7 +6,7 @@
 /*   By: ikarishe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 11:33:24 by ikarishe          #+#    #+#             */
-/*   Updated: 2017/10/12 15:59:22 by ikarishe         ###   ########.fr       */
+/*   Updated: 2017/10/13 14:11:42 by ikarishe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,19 +89,65 @@ static int		is_valid(char *buf)
 	return (0);
 }
 
+void	is_file_empty(char *filename)
+{
+	int fd;
+	char buf[1];
+
+	fd = open(filename, O_RDONLY);
+	if (!(read(fd, buf, 1)))
+	{
+		write(1, "error\n", 6);
+		exit (1);
+	}
+	close (fd);
+}
+
+void	ft_bzero(void *str, size_t n)
+{
+	char *s;
+	
+	s = str;
+	while (n > 0)
+	{
+		*s++ = 0;
+		n--;
+	}
+}
+
+void	is_newline_at_end(char *filename)
+{
+	char buf[26 * 21 + 1];
+	int i = 0;
+	int fd;
+
+	ft_bzero(buf, 26 * 21 + 1);
+	fd = open(filename, O_RDONLY);
+	while (read(fd, &buf[i], 1) > 0)
+		i++;
+	if (buf[i - 2] == '\n')
+	{
+		write(1, "error\n", 6);
+		exit (1);
+	}
+}
+
 int		verify(char *filename)
 {
 	int		fd;
 	int		tetr_count;
 	char	buf[21];
 
+	ft_bzero(buf, 21);
 	tetr_count = 0;
 	fd = open(filename, O_RDONLY);
-	if (fd < 0)
+	if ((fd < 0))
 	{
 		write(1, "error\n", 6);
 		exit (1);
 	}
+	is_file_empty(filename);
+	is_newline_at_end(filename);
 	while (read(fd, buf, 21) > 0)
 	{
 		if ((is_valid(buf) != 0) || (tetr_count > 26))
@@ -110,6 +156,7 @@ int		verify(char *filename)
 			exit (1);
 		}
 		tetr_count++;
+		ft_bzero(buf, 21);
 	}
 	close(fd);
 	return (tetr_count);
