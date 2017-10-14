@@ -20,3 +20,11 @@ $(EOF)
 tofix: ???find a way to make sure last tetromino doesn't have a newline at the end
 
 more norminette stuff
+
+__________________________________________________________________________________
+
+NEW (10/13/2017 17:49) by ekulyyev:
+
+Norme: ./solve.c
+Error (line 31): function solver has 40 lines
+

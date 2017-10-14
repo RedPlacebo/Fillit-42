@@ -6,7 +6,7 @@
 /*   By: ikarishe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 14:23:47 by ikarishe          #+#    #+#             */
-/*   Updated: 2017/10/12 15:49:56 by ikarishe         ###   ########.fr       */
+/*   Updated: 2017/10/13 18:09:12 by ekulyyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,8 @@ int					place_innext_available(t_tetro *piece, char **board,
 void				reset_tetros(t_tetro *pieces, int num_pieces);
 int					try_placing_it_everywehre(t_tetro *piece, char **board,
 					int size, t_location *xy);
+void				is_file_empty(char *filename);
+void				ft_bzero(void *str, size_t n);
+void				is_newline_at_end(char *filename);
 
 #endif

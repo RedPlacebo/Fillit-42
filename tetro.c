@@ -6,16 +6,11 @@
 /*   By: ikarishe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 14:25:19 by ikarishe          #+#    #+#             */
-/*   Updated: 2017/10/12 14:18:00 by ekulyyev         ###   ########.fr       */
+/*   Updated: 2017/10/13 18:04:32 by ekulyyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-void				ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
 
 static void			fill_tet(t_tetro *cur, char *buf, int id)
 {
@@ -43,18 +38,6 @@ static void			fill_tet(t_tetro *cur, char *buf, int id)
 		if (buf[i] == '#')
 			cur->offset[++hashnum] = xy;
 		xy.x++;
-	}
-}
-
-void				put_tet_info(t_tetro piece)
-{
-	int i;
-
-	i = 0;
-	while (i < 4)
-	{
-		ft_putchar(piece.id);
-		i++;
 	}
 }
 
@@ -121,19 +104,4 @@ t_tetro				*make_tetros(char *filename, int num_pieces,
 		i++;
 	}
 	return (pieces);
-}
-
-void				reset_tetros(t_tetro *pieces, int num_pieces)
-{
-	int i;
-
-	i = 0;
-	while (i < num_pieces)
-	{
-		pieces[i].current.x = 0;
-		pieces[i].current.y = 0;
-		pieces[i].onboard = 0;
-		pieces[i].previously_placed = 0;
-		i++;
-	}
 }

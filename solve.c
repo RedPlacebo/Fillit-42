@@ -6,25 +6,26 @@
 /*   By: ikarishe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 10:58:23 by ikarishe          #+#    #+#             */
-/*   Updated: 2017/10/13 15:01:03 by ikarishe         ###   ########.fr       */
+/*   Updated: 2017/10/13 17:45:31 by ekulyyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static void		reset_all_following(t_tetro *pieces, int num_pieces, int tet_num)
+static void		reset_all_following(t_tetro *pieces, int num_pieces,
+		int tet_num)
 {
-    int i;
+	int i;
 
-    i = tet_num + 1;
-    while (i < num_pieces)
-    {
-        pieces[i].current.x = 0;
-        pieces[i].current.y = 0;
-        pieces[i].onboard = 0;
-        pieces[i].previously_placed = 0;
-        i++;
-    }
+	i = tet_num + 1;
+	while (i < num_pieces)
+	{
+		pieces[i].current.x = 0;
+		pieces[i].current.y = 0;
+		pieces[i].onboard = 0;
+		pieces[i].previously_placed = 0;
+		i++;
+	}
 }
 
 int				solver(int total_pieces, t_tetro *pieces, int size)
@@ -37,7 +38,6 @@ int				solver(int total_pieces, t_tetro *pieces, int size)
 	tet_num = 0;
 	allocate_mem(&board, size);
 	board = make_board(board, size);
-	printf("now working on board size - %d\n", size);
 	while (1)
 	{
 		if (place_innext_available(&pieces[tet_num], board, size))
@@ -64,7 +64,7 @@ int				solver(int total_pieces, t_tetro *pieces, int size)
 				tet_num--;
 				pieces_left++;
 				remove_piece(&pieces[tet_num], pieces[tet_num].current.x,
-							pieces[tet_num].current.y, board);	
+							pieces[tet_num].current.y, board);
 				reset_all_following(pieces, total_pieces, tet_num);
 			}
 		}

@@ -6,7 +6,7 @@
 /*   By: ikarishe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 11:17:10 by ikarishe          #+#    #+#             */
-/*   Updated: 2017/10/13 12:52:33 by ikarishe         ###   ########.fr       */
+/*   Updated: 2017/10/13 16:46:35 by ekulyyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	remove_piece(t_tetro *piece, int x, int y, char **board)
 {
-//	printf("removing piece '%c', from position (x, y) (%d, %d)", piece->id, x, y);
 	piece->onboard = 0;
 	board[y + piece->offset[0].y][x + piece->offset[0].x] = '.';
 	board[y + piece->offset[1].y][x + piece->offset[1].x] = '.';
@@ -64,10 +63,8 @@ int		try_placing_it_everywhere(t_tetro *piece, char **board,
 	{
 		while (xy->x < size)
 		{
-//			printf("checking (x, y) for piece %c, (%d, %d)\n", piece->id, xy->x, xy->y);
 			if (can_put(piece, *xy, board, size))
 			{
-//				printf("placing piece at position %d, %d\n", xy->x, xy->y);
 				put_piece(piece, xy->x, xy->y, board);
 				return (1);
 			}
