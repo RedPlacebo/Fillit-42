@@ -6,7 +6,7 @@
 /*   By: ikarishe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 10:58:23 by ikarishe          #+#    #+#             */
-/*   Updated: 2017/10/13 17:45:31 by ekulyyev         ###   ########.fr       */
+/*   Updated: 2017/10/19 12:50:23 by ikarishe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,35 @@ static void		reset_all_following(t_tetro *pieces, int num_pieces,
 	}
 }
 
+void			are_we_done_yet(int *pieces_left, char **board, int *size,
+		int *tet_num)
+{
+	*pieces_left = *pieces_left - 1;
+	if (*pieces_left == 0)
+	{
+		put_board(board, *size);
+		exit(0);
+	}
+	*tet_num = *tet_num + 1;
+}
+
+void			move_piece_zero(t_tetro *pieces, int *total_pieces,
+		char **board, int *size)
+{
+	reset_tetros(pieces, *total_pieces);
+	free_board(board, *size);
+	solver(*total_pieces, pieces, (*size + 1));
+}
+
+void			remove_last(int *tet_num, t_tetro *pieces, char **board,
+		int *total_pieces)
+{
+	*tet_num = *tet_num - 1;
+	remove_piece(&pieces[*tet_num], pieces[*tet_num].current.x,
+			pieces[*tet_num].current.y, board);
+	reset_all_following(pieces, *total_pieces, *tet_num);
+}
+
 int				solver(int total_pieces, t_tetro *pieces, int size)
 {
 	int		tet_num;
@@ -41,31 +70,15 @@ int				solver(int total_pieces, t_tetro *pieces, int size)
 	while (1)
 	{
 		if (place_innext_available(&pieces[tet_num], board, size))
-		{
-			pieces_left--;
-			if (pieces_left == 0)
-			{
-				put_board(board, size);
-				return (0);
-			}
-			tet_num++;
-		}
+			are_we_done_yet(&pieces_left, board, &size, &tet_num);
 		else
 		{
 			if (tet_num == 0)
-			{
-				reset_tetros(pieces, total_pieces);
-				free_board(board, size);
-				if (solver(total_pieces, pieces, (size + 1)) == 0)
-					return (0);
-			}
+				move_piece_zero(pieces, &total_pieces, board, &size);
 			else
 			{
-				tet_num--;
 				pieces_left++;
-				remove_piece(&pieces[tet_num], pieces[tet_num].current.x,
-							pieces[tet_num].current.y, board);
-				reset_all_following(pieces, total_pieces, tet_num);
+				remove_last(&tet_num, pieces, board, &total_pieces);
 			}
 		}
 	}
